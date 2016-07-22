@@ -1,4 +1,7 @@
 class WikisController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     @wikis = Wiki.all
   end
@@ -57,5 +60,10 @@ class WikisController < ApplicationController
     end
   end
 
+  private
+
+	def user_params
+		params.require(:user).permit(:email)
+	end
 
 end
