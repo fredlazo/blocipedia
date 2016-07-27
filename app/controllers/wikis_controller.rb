@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
-
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
+  #before_action :authorize_user, only: [:update]
 
   def index
     @wikis = Wiki.all
@@ -15,6 +15,7 @@ class WikisController < ApplicationController
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
+    @wiki.user = current_user
 
     if @wiki.save
       flash[:notice] = "Saved!"
@@ -35,6 +36,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
@@ -65,5 +67,16 @@ class WikisController < ApplicationController
 	def user_params
 		params.require(:user).permit(:email)
 	end
+
+=begin
+  def authorize_user
+    wiki = Wiki.find(params[:id])
+
+    unless current_user == wiki.user
+      flash[:alert] = "You can't do that."
+      redirect_to wiki
+    end
+  end
+=end
 
 end
