@@ -2,22 +2,8 @@
 <div class="col-md-8">
   <h1>New Wiki</h1>
 
-  <%= form_for @wiki do |f| %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control'  %>
-    </div>
+  <%= render partial: 'form' %>
 
-    <div class="form-group">
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 8, class: 'form-control'  %>
-    </div>
-
-    <%= render partial: 'form' %>
-
-    <%= f.submit "Save", class: 'btn btn-success pull-right' %>
-
-  <% end %>
 </div>
 
 <div class="col-md-2"></div>

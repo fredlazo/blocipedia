@@ -1,6 +1,5 @@
 require 'faker'
 
-# Create some users
 3.times do
 	user = User.new(
 		email:		Faker::Internet.email,
@@ -11,7 +10,7 @@ require 'faker'
 end
 users = User.all
 
-15.times do
+10.times do
 	Wiki.create!(
 		user:	users.sample,
 		title:	Faker::Lorem.sentence,
@@ -24,14 +23,14 @@ wikis = Wiki.all
 user = User.first
 user.skip_reconfirmation!
 user.update_attributes!(
-	email: 'standard@yahoo.com',
+	email: 'superman@yahoo.com',
 	password: 'password'
 )
 
 user_premium = User.last
 user_premium.skip_reconfirmation!
 user_premium.update_attributes!(
-email: 'premium@yahoo.com',
+email: 'batman@yahoo.com',
 password: 'password'
 )
 

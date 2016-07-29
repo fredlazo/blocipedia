@@ -1,8 +1,20 @@
 
-
-
-
-<%= form_tag charges_path do %>
-  <h4>Premium Membership: $15.00 USD</h4>
-  <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
-<% end %>
+<br>
+<div class="row">
+  <div class="col-md-3"></div>
+    <div class="col-md-6 jumbotron">
+      <%= form_tag charges_path do %>
+        <h3>Blocipedia Premium:
+        <div class="pull-right"> $15 USD</div></h3>
+          <ul>
+            <li>Create private Wikis</li>
+            <li>Free 7-day trial</li>
+            <li>Upgrade now!</li>
+          </ul>
+          <div class="pull-right">
+        <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+      </div>
+      <% end %>
+    </div>
+  <div class="col-md-3"></div>
+</div>
