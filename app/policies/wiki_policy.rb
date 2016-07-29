@@ -5,7 +5,7 @@ class WikiPolicy < ApplicationPolicy
     if record.private == false
       true if user.present?
     elsif record.private == true
-      true if user.present? && (user.admin? || record.user == user)
+      true if user.present? && (user.admin? || record.user == user || user.premium?)
     else
       false
     end
