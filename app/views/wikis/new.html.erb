@@ -12,15 +12,10 @@
       <%= f.label :body %>
       <%= f.text_area :body, rows: 8, class: 'form-control'  %>
     </div>
-    
-    <% if current_user.premium? %>
-      <div class="form-group">
-        <%= f.label :private %>
-        <%= f.check_box :private %>
-      </div>
-    <% end %>
 
-    <%= f.submit "Save", class: 'btn btn-success' %>
+    <%= render partial: 'form' %>
+
+    <%= f.submit "Save", class: 'btn btn-success pull-right' %>
 
   <% end %>
 </div>

@@ -40,4 +40,13 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
+
+  def downgrade_plan
+    current_user.standard!
+
+    flash[:notice] = "Your plan was changed to #{current_user.role.capitalize}"
+    redirect_to wikis_path
+  end
+
+
 end

@@ -11,10 +11,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
 
     if @wiki.save
@@ -32,6 +29,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
@@ -63,6 +61,10 @@ class WikisController < ApplicationController
   end
 
   private
+
+  def wiki_params
+    params.require(:wiki).permit(:title, :body, :private)
+  end
 
 	def user_params
 		params.require(:user).permit(:email)

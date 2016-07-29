@@ -24,8 +24,15 @@ wikis = Wiki.all
 user = User.first
 user.skip_reconfirmation!
 user.update_attributes!(
-	email: 'fredlazo@yahoo.com',
+	email: 'standard@yahoo.com',
 	password: 'password'
+)
+
+user_premium = User.last
+user_premium.skip_reconfirmation!
+user_premium.update_attributes!(
+email: 'premium@yahoo.com',
+password: 'password'
 )
 
 puts "Seed finished"

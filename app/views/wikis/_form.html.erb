@@ -1,0 +1,15 @@
+
+<%= form_for @wiki do |f| %>
+  <% if current_user.premium? %>
+    <div class="form-group">
+      <%= f.label :private, class: 'checkbox box' do %>
+        <%= f.check_box :private %> Private
+      <% end %>
+    </div>
+    <% else %>
+      <h4>
+        <%= link_to "Upgrade", new_charge_path %> to Premium to make this private.
+      </h4>
+  <% end %>
+
+<% end %>
