@@ -1,6 +1,7 @@
 class WikiPolicy < ApplicationPolicy
 
 
+
   def edit?
     if record.private == false
       true if user.present?
@@ -10,5 +11,7 @@ class WikiPolicy < ApplicationPolicy
       false
     end
   end
+
+
 
 end
