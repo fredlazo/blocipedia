@@ -17,11 +17,14 @@
     </div>
     <% else %>
       <h4>
-        
+
         <%= link_to "Upgrade", new_charge_path %> to Premium to make this private.
       </h4>
   <% end %>
+  <div class="pull-right">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+    <%= link_to "Cancel", wikis_path, class: 'btn btn-danger' %>
+  </div>
 
-  <%= f.submit "Save", class: 'btn btn-success pull-right' %>
 
 <% end %>

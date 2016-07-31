@@ -2,6 +2,7 @@ require 'faker'
 
 3.times do
 	user = User.new(
+		username: Faker::Internet.user_name,
 		email:		Faker::Internet.email,
 		password:	Faker::Internet.password(10)
 	)
@@ -23,6 +24,7 @@ wikis = Wiki.all
 user = User.first
 user.skip_reconfirmation!
 user.update_attributes!(
+	username: 'clark_kent',
 	email: 'superman@yahoo.com',
 	password: 'password'
 )
@@ -30,8 +32,9 @@ user.update_attributes!(
 user_premium = User.last
 user_premium.skip_reconfirmation!
 user_premium.update_attributes!(
-email: 'batman@yahoo.com',
-password: 'password'
+	username: 'bruce_wayne',
+	email: 'batman@yahoo.com',
+	password: 'password'
 )
 
 puts "Seed finished"
