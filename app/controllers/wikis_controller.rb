@@ -3,7 +3,7 @@ class WikisController < ApplicationController
   #before_action :authorize_user, only: [:update]
 
   def index
-    @wikis = Wiki.visible_to(current_user)
+    @wikis = policy_scope(Wiki)
   end
 
   def new
@@ -30,7 +30,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    #@wiki.update_attribute(:private, false) if current_user.standard?
+    @collaborator = Collaborator.new
     authorize @wiki
   end
 

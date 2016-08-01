@@ -6,6 +6,10 @@ class ApplicationPolicy
     @record = record
   end
 
+  def edit?
+    update?
+  end
+
   def update?
     user.present?
   end

@@ -1,0 +1,36 @@
+<br>
+
+<h3>Collaboration on <%= @wiki.title %></h3>
+<ul>
+<% @wiki.users.each do |co| %>
+  <li><%= co.username %></li>
+<% end %>
+</ul>
+<h3>Manage Collaborators</h3>
+<div class="col-md-8">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Add Collaborator</th>
+				<th>Delete Collaborator</th>
+			</tr>
+		</thead>
+		<tbody>
+			<div class="field">
+			<% @user.each do |user| %>
+
+			    <div class="form-group">
+			    	<tr>
+			    		<td><%= user.username %></td>
+			    		<td><%= user.email %></td>
+			    		<td><%= button_to "Add Collaborator", wiki_collaborators_path(@wiki.id), params: { user_id: user.id } %></td>
+			    		<td><%= link_to "Remove Collaborator", wiki_collaborator_path(@wiki, @wiki.user.id), method: :delete, class: 'btn btn-danger' %></td>
+			    	</tr>
+			    </div>
+			</div>
+			<% end %>
+		</tbody>
+	</table>
+</div>

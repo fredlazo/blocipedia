@@ -8,6 +8,7 @@
     <br>
       <%= button_to 'Downgrade Now', downgrade_plan_path, data: { confirm: "Your private Wikis will be public. Downgrade now?" }, class: 'btn btn-warning', method: :get  %>
 <% end %>
+
 <% if current_user.standard? %>
   <h4>Get Blocipedia Premium for $15</h4>
   <ul>
@@ -15,5 +16,6 @@
     <li>Do other stuff</li>
     <li>One more bullet point</li>
   </ul>
+  <%= button_to "Upgrade Now", new_charge_path, class: 'btn btn-success', method: :get %>
+
 <% end %>
-    <%= button_to "Upgrade Now", new_charge_path, class: 'btn btn-success', method: :get %>
