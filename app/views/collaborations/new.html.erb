@@ -1,28 +1,17 @@
 <br>
 <div class="row">
-  <div class='col-md-5'>
-    <h4 class='text-center'>Collaborators for '<b><%= @wiki.title %>'</b></h4>
-    
+  <div class='col-md-4'></div>
+  <div class='col-md-4'>
+    <h4>Add Collaborator</h4>
+      <%= form_for @collaboration, url: wiki_collaborations_path do |f| %>
+        <div class="form-group">
+          <%= f.collection_select :user_id, @wiki.available_users, :id, :username, :prompt => true %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Save", class: 'btn btn-success' %>
+        </div>
 
-
-
-
-  </div>
-
-  <div class='col-md-2'></div>
-
-  <div class='col-md-5'>
-
-
-<h4>Add Collaborator</h4>
-
-<%= form_for @collaboration, url: wiki_collaborations_path do |f| %>
-  <div class="form-group">
-    <%= f.collection_select :user_id, @wiki.available_users, :id, :username, :prompt => true %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Save", class: 'green-btn centered-text btn-success' %>
-  </div>
-
-<% end %>
+      <% end %>
+    </div>
+    <div class='col-md-4'></div>
 </div>

@@ -22,3 +22,35 @@
 <div class="h-divider"></div>
   <p><%= markdown(@wiki.body) %></p>
 </div>
+
+
+<% if @wiki.private?%>
+
+<h4> Collaborators:
+
+ <% @wiki.collaborations.each do |c| %>
+
+<div class = 'row'>
+      <small>
+  <br>
+
+
+  <div class="col-md-2">
+
+     <%= c.user.username %>
+  </div>
+
+  <div class="col-md-2">
+    <% if current_user == @wiki.user%>
+    <%= link_to "Remove", wiki_collaboration_path(@wiki, c), method: :delete %>
+    <% end %>
+  </div>
+
+</small>
+</div>
+
+
+ <% end %>
+</h4>
+
+<% end %>

@@ -7,12 +7,10 @@ before_action :set_wiki
 
   def new
     @collaboration = @wiki.collaborations.new
-
   end
 
   def create
     @collaboration = @wiki.collaborations.new( collaboration_params )
-
 
     if @collaboration.save
       flash[:notice] = "Collaboration was saved."
@@ -24,15 +22,14 @@ before_action :set_wiki
   end
 
   def destroy
-
     @collaboration = Collaboration.find(params[:id])
-    @wiki = @collaboration.wiki
-    if @collaborator.destroy
-      flash[:notice] = "Collaborator was removed successfully"
-      redirect_to edit_wiki_path(@wiki)
-    else
-      flash[:error] = "There was an error removing a collaborator.Please try again"
-      render "show"
+
+    if @collaboration.destroy
+       flash[:notice] = " #{@collaboration.user.username} was successfully removed."
+       redirect_to @wiki
+     else
+       flash[:error] = "Error. Could not remove the collaboration."
+       redirect_to @wiki
     end
   end
 
