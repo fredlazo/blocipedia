@@ -5,5 +5,9 @@ class Wiki < ActiveRecord::Base
 
   #scope :public_wikis, -> {where(private: false)}
 
+  has_many :collaborations
+  #has_many :users
+  has_many :users, through: :collaborations
+
   scope :visible_to, -> (user) { user && ((user.role == "admin") || (user.role == "premium")) ? all : where(private: false)}
 end

@@ -15,8 +15,8 @@
       <li><%= link_to "Create a Wiki", new_wiki_path %></li>
       <div class="pull-right user-info">
         <% if user_signed_in? %>
-          <strong><%= current_user.email %></strong> |
-          <b><%= current_user.role.upcase %></b> | 
+          <strong><%= current_user.username %></strong> |
+          <b><%= current_user.role.upcase %></b> |
 
           <%= link_to 'My Account', edit_user_registration_path, :class => 'navbar-link' %> - <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         <% else %>
