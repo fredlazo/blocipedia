@@ -1,0 +1,1 @@
+$('#collab-<%= @user.id %>').html('<%= link_to user_collaborator_path(user_id: @user.id, wiki_id: @wiki.id, id: 1), class: 'btn btn-warning', method: :delete, remote: true do %><i class="glyphicon glyphicon-remove"> </i>&nbsp; Remove <%= @user.name %><% end %>');
