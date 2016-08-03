@@ -40,17 +40,23 @@ class ChargesController < ApplicationController
       redirect_to new_charge_path
   end
 
+=begin
+  wikis = Wiki.where(user_id: @user.id)
+  wikis_collaborating =
+=end
+
 
   def downgrade_plan
     current_user.standard!
 
-    current_user.wikis.each do |wiki|
+    @wikis = Wiki.where(user_id: current_user.id).all
+
+    @wikis.each do |wiki|
       wiki.update_attribute(:private, false)
     end
 
     flash[:notice] = "Your plan was changed to #{current_user.role.capitalize}"
     redirect_to wikis_path
   end
-
 
 end

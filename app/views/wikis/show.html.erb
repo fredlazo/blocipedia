@@ -1,56 +1,40 @@
 
+
 <div class="row">
-
-  <div class='col-md-11'>
-    <h1><%= markdown(@wiki.title) %></h1>
-  </div class>
-
-  <div class='col-md-1'>
-    <h4>
-      <%= link_to "", edit_wiki_path(@wiki), class: 'glyphicon glyphicon-pencil icons' %>
-      <%= link_to "", @wiki, method: :delete, class: 'glyphicon glyphicon-trash icons ', data: { confirm: 'Are you sure?' } %>
-    </h4>
+  <h1 class="col-md-8"><%= markdown(@wiki.title) %></h1>
+  <div class="col-md-4">
+    <ul class="nav">
+      <div class="pull-right down user-info">
+      <%= link_to "[edit]", edit_wiki_path(@wiki) %></li> |
+      <%= link_to "[delete]", @wiki, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </ul>
   </div>
-
 </div>
-
-<medium>
-    <p>Started by: <%=@wiki.user.username%><p>
-    <p><%= link_to pluralize(@wiki.collaborations.count, "collaborator"), new_wiki_collaboration_path(@wiki) %></p>
-</medium>
 
 <div class="h-divider"></div>
   <p><%= markdown(@wiki.body) %></p>
-</div>
+<div class="h-divider"></div>
 
 
-<% if @wiki.private?%>
+  <p><b>Started by: <%=@wiki.user.username%></b><p>
+      <medium>
+        <%= pluralize(@wiki.collaborations.count, "collaborator") %> on this wiki.
+        <% if @wiki.user_id == current_user.id %>
+          <%= link_to "| Add more collaborators", new_wiki_collaboration_path(@wiki) %>
+        <% end %>
+      </medium>
+      <div class='box'>
+         <% @wiki.collaborations.each do |c| %>
+           <small>
+               <li><%= c.user.username %>
+                <% if current_user == @wiki.user%>
+                  <%= link_to "| remove", wiki_collaboration_path(@wiki, c), method: :delete %>
+                <% end %>
+              </li>
+          </small>
+        <% end %>
+      </div>
+    
 
-<h4> Collaborators:
-
- <% @wiki.collaborations.each do |c| %>
-
-<div class = 'row'>
-      <small>
-  <br>
-
-
-  <div class="col-md-2">
-
-     <%= c.user.username %>
-  </div>
-
-  <div class="col-md-2">
-    <% if current_user == @wiki.user%>
-    <%= link_to "Remove", wiki_collaboration_path(@wiki, c), method: :delete %>
-    <% end %>
-  </div>
-
-</small>
-</div>
-
-
- <% end %>
-</h4>
-
-<% end %>
+<div class="h-divider"></div>

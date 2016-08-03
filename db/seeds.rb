@@ -37,6 +37,8 @@ email: 'batman@yahoo.com',
 password: 'password'
 )
 
+
+
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"

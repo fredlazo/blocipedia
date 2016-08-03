@@ -1,7 +1,31 @@
 <div class="col-md-2"></div>
 <div class="col-md-8">
   <h1>Edit Wiki</h1>
-  <%= render partial: 'form' %>
+
+  <%= form_for @wiki do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 8, class: 'form-control'  %>
+    </div>
+
+    <% if current_user.premium? || @wiki.collaborations(user_id: current_user.id) %>
+      <div class="form-group">
+        <%= f.label :private, class: 'checkbox box' do %>
+          <%= f.check_box :private %> Private
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= f.submit "Save", class: 'btn btn-success pull-right' %>
+
+  <% end %>
+
+
 
 </div>
 
