@@ -26,15 +26,15 @@
       </medium>
       <div class='box'>
          <% @wiki.collaborations.each do |c| %>
-           <small>
+           <medium>
                <li><%= c.user.username %>
                 <% if current_user == @wiki.user%>
                   <%= link_to "| remove", wiki_collaboration_path(@wiki, c), method: :delete %>
                 <% end %>
               </li>
-          </small>
+          </medium>
         <% end %>
       </div>
-    
+
 
 <div class="h-divider"></div>
